@@ -1,0 +1,38 @@
+#!/bin/python
+
+import argparse
+import time
+import classes
+
+def checkgid(value):
+    try:
+        return int(gid)
+    except:
+        raise argparse.ArgumentTypeError('Invalid')
+
+def checkdate(date):
+    redate = re.compile(r'\b[0-3][0-9]-[0-1][0-9]-[0-9][0-9]\b')
+    if not (redate.match(date) and len(date) == 8):
+        raise argparse.ArgumentTypeError('date must be dd-mm-yy')
+
+def args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-g', '--gid',
+                        default=argparse.SUPPRESS)
+    parser.add_argument('-d', 'date',
+                        default=time.strftime("%d-%m-%y)
+                        help= 'date form: dd-mm-yy)
+    args = vars(parser.parse_args)
+    if 'gid' in args:
+        gids = [checkgid(args['gid'])]
+    else
+        checkdate(args['date'])
+        gids = db.getgidsdate(args['date'])
+
+    for gid in gids:
+        g = classes.Calculate(gid)
+        g.game()
+        g.compare()
+
+if __name__ == "__main__":
+    args()
