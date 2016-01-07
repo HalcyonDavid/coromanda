@@ -1,0 +1,26 @@
+#!/bin/python
+
+import argparse
+import time
+import classes
+
+
+def args():
+    parser = argparse.ArgumentParser()
+    (options, args) = parser.parse_args
+
+    try:
+        num = int(args[0])
+    except:
+        num = 1000
+
+    gids = db.getgids(num)
+    with open ('conf.yaml', 'r') as f:
+        stats = yaml.load(f)
+
+    for s in stats:
+        sp = classes.StatPlot(s, gids)
+        sp.execute()
+
+if __name__ == "__main__":
+    args()
