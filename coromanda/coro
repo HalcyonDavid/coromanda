@@ -4,6 +4,7 @@ import argparse
 import time
 import classes
 
+
 def checkgid(value):
     try:
         return int(gid)
@@ -19,9 +20,13 @@ def args():
     parser = argparse.ArgumentParser()
     parser.add_argument('-g', '--gid',
                         default=argparse.SUPPRESS)
-    parser.add_argument('-d', 'date',
+    parser.add_argument('-d', '--date',
                         default=time.strftime("%d-%m-%y)
-                        help= 'date form: dd-mm-yy)
+                        help= 'date form: dd-mm-yy')
+    parser.add_argument('-f', '--file',
+                        default='txt.yaml')
+    parser.add_argument('-o', '--output',
+                        default='txt.yaml')
     args = vars(parser.parse_args)
     if 'gid' in args:
         gids = [checkgid(args['gid'])]
@@ -30,7 +35,7 @@ def args():
         gids = db.getgidsdate(args['date'])
 
     for gid in gids:
-        g = classes.Calculate(gid)
+        g = classes.Calculate(gid, sfile=args['file'], ofile=args['output'])
         g.game()
         g.compare()
 
