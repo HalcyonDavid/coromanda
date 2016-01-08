@@ -88,8 +88,8 @@ class StatPlot(object):
 class Calculate(object):
     def __init__(self, gid, sfile='txt.yaml', ofile='out.yaml'):
         self.gid = gid
-        self.h = db.gett(gid)
-        self.a = db.gett(gid, home=False)
+        self.h = db.getname(gid)
+        self.a = db.getname(gid, home=False)
         self.date = db.getdate(gid)
         self.sfile = sfile
         self.ofile = ofile
@@ -121,8 +121,8 @@ class Calculate(object):
         return res
 
     def compare(self, ofile=self.ofile):
-        hodddict = db.getodd(self.gid)
-        aodddict = db.getodd(self.gid, home=False)
+        hodddict = db.getodds(self.gid)
+        aodddict = db.getodds(self.gid, home=False)
         hname = max(hodddict, key=hodddict.get)
         aname = max(aodddict, key=aodddict.get)
         hnum = hodddict[hname]
