@@ -36,6 +36,9 @@ def getgidsfromdate(date):
     Returns a list of gids on the date
     """
     return [123,124]
+
+def w5(gid, home=False):
+    return 0
     
 if __name__ == "__main__":
     pass
