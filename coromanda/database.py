@@ -1,9 +1,15 @@
-def getname(gid, home=False):
+import matlab.engine
+eng = matlab.engine.start_matlab()
+
+def getname(gid, home=True):
     """
     If home is true return name of home team
     if home id false return name of away team
     """
-    return 'aaa'
+    if home:
+        name = eng.getinfo('home', gid)
+    else:
+        name = eng.getinfo('away', gid)
     
 def getdate(gid):
     """
@@ -20,9 +26,14 @@ def win(gid):
     ---------
     gid : int 
     """
-    return 1
+    winner = eng.getinfo('winner', gid)
+    print winner
+    if winner == getname(gid):
+        return 1
+    else:
+        return 0;
 
-def getodds(gid, home=False):
+def getodds(gid, home=True):
     """
     Returns a dictionary mapping the name of website
     to the payout.
@@ -37,8 +48,13 @@ def getgidsfromdate(date):
     """
     return [123,124]
 
-def w5(gid, home=False):
-    return 0
+def w5(gid, home=True):
+    if home:
+        stat = eng.getstat('W5', getname(gid), gid)
+    else:
+        stat = eng.getstat('W5', getname(gid, home=False), gid)
+    print(stat)
+    return stat
     
 if __name__ == "__main__":
     pass
