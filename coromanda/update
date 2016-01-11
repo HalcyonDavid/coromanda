@@ -17,7 +17,7 @@ def args():
     try:
         num = int(args[0])
     except:
-        num = 1000
+        num = 100
 
     gids = db.getgids(num)
     with open (options['config'], 'r') as f:
