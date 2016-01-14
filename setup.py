@@ -13,7 +13,7 @@ setup(
     author_email = 'davidwfallis@googlemail.com',
     packages = ['coromanda'],
     include_package_data = True,
-    scripts = ['bin/update', 'bin/coromanda'],
+    scripts = ['bin/update', 'bin/coro'],
     url = '',
     description = 'Game prediction',
     long_description = 'Game prediction',
