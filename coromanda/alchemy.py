@@ -1,6 +1,6 @@
 from sqlalchemy import *
 
-engine = create_engine('mysql+mysqlconnector://roo:password@localhost:3306/halcyonnhl')
+engine = create_engine('mysql+mysqlconnector://root:password@localhost:3306/halcyonnhl')
 
 def getinfo(info, gid):
   # home, away, winner, gametype
